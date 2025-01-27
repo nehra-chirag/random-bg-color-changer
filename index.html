@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            top: 300px;
+             
+        }
+
+        .button-container{
+            display: flex;
+            gap: 20px;
+        }
+        #btn1{
+            padding: 10px;
+            border-radius: 10px;
+        }
+        #btn2{
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Click on start to change bg color  </h1>
+        <div class="button-container">
+        <button id="btn1">start</button>
+        <button id="btn2">stop</button>
+        </div>
+    </div>
+
+
+    <script >
+        //generate a random color
+
+const randomColor = function() {
+  const hex = '0123456789ABCDEF';
+  let color = '#';
+  for(let i=0; i<6; i++){
+    color += hex[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
+
+let stopchanging; 
+
+let changebgcolor = function(){
+  document.body.style.backgroundColor = randomColor();
+}
+const startChangingColor = function(){
+  stopchanging = setInterval(changebgcolor,1000);
+};
+const stopChangingColor = function(){
+  clearInterval(stopchanging);
+  stopchanging = null;
+};
+
+document.querySelector("#btn1").addEventListener("click",startChangingColor);
+document.querySelector("#btn2").addEventListener('click',stopChangingColor);
+
+
+ </script>
+</body>
+</html>
